@@ -23,12 +23,9 @@ await bdiator.HandleAsync(new CreatedEvent()
     }
 });
 
-await bdiator.HandleAsync(new CreatedEvent()
+await bdiator.HandleAsync(new NotifiedMessage()
 {
-    EventDetails = new CreatedEventDetails()
-    {
-        Id = Guid.NewGuid()
-    }
+    Message = "Notified from other type of handler!"
 });
 ```
 
