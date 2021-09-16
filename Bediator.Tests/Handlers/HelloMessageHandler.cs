@@ -6,7 +6,7 @@ namespace Bediator.Tests.Handlers
 {
     internal class HelloMessageHandler : IMessageHandler<HelloMessage>
     {
-        public async Task Handle(HelloMessage message)
+        public async Task HandleAsync(HelloMessage message)
         {
             message.Counter.Count += 1;
             await Task.Delay(50);

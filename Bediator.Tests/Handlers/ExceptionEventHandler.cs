@@ -8,7 +8,7 @@ namespace Bediator.Tests.Handlers
 {
     internal class ExceptionEventHandler : IEventHandler<ExceptionEvent>
     {
-        public async Task Handle(ExceptionEvent @event)
+        public async Task HandleAsync(ExceptionEvent @event)
         {
             await Task.Delay(50);
             

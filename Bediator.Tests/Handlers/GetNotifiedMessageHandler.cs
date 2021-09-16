@@ -6,7 +6,7 @@ namespace Bediator.Tests.Handlers
 {
     internal class GetNotifiedMessageHandler : IMessageHandler<GetNotifiedMessage>
     {
-        public async Task Handle(GetNotifiedMessage message)
+        public async Task HandleAsync(GetNotifiedMessage message)
         {
             message.Counter.Count += 1;
             await Task.Delay(50);

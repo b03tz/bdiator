@@ -7,7 +7,7 @@ namespace Bediator.Tests.Handlers
     internal class UpdatedEventHandler : IEventHandler<UpdatedEvent>
     {
         // On purpose non-async null return
-        public Task Handle(UpdatedEvent @event)
+        public Task HandleAsync(UpdatedEvent @event)
         {
             @event.Counter.Count += 1;
             return null!;

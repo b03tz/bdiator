@@ -5,6 +5,6 @@ namespace Bediator.Tests.Interfaces
     internal interface IEventHandler<in TEvent>
     where TEvent : IEvent
     {
-        Task Handle(TEvent @event);
+        Task HandleAsync(TEvent @event);
     }
 }

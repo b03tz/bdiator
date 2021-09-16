@@ -69,7 +69,7 @@ namespace Bediator.Tests
                 await Assert.ThrowsAsync<ApplicationException>(async () =>
                     await bdiator.HandleAsync(new FaultyEvent()));
 
-            Assert.Equal($"Handler {typeof(TestFaultyHandler)} should have a 'Handle' method!", exception.Message);
+            Assert.Equal($"Handler {typeof(TestFaultyHandler)} should have a 'Handle' or 'HandleAsync' method!", exception.Message);
         }
     }
 }

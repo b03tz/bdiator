@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Threading.Tasks;
 using Bediator.Helpers;
 
@@ -33,14 +34,24 @@ namespace Bediator
             {
                 var messageHandler = this.handlerProvider.GetService(handlerType) ??
                                      throw new ApplicationException($"No messagehandler registered for {handlerType}");
-                
-                var method = messageHandler.GetType().GetMethod("Handle");
-                
+
+                var isAsync = true;
+                var method = messageHandler.GetType().GetMethod("HandleAsync");
+
                 if (method == null)
-                    throw new ApplicationException($"Handler {messageHandler} should have a 'Handle' method!");
+                {
+                    isAsync = false;
+                    method = messageHandler.GetType().GetMethod("Handle");
+                    
+                    if (method == null)
+                        throw new ApplicationException($"Handler {messageHandler} should have a 'Handle' or 'HandleAsync' method!");
+                }
 
-                var result = method?.Invoke(messageHandler, new object?[] { message });
+                var result = method.Invoke(messageHandler, new object?[] { message });
 
+                if (!isAsync)
+                    continue;
+                
                 if (result == null)
                     continue;
 

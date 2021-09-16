@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.WebSockets;
 using System.Reflection;
 
 namespace Bediator.Helpers
@@ -63,7 +64,7 @@ namespace Bediator.Helpers
                     if (!arguments.Any())
                         continue;
 
-                    if (!arguments[0].GetInterfaces().Any(x => x.IsAssignableTo(messageType)))
+                    if (!arguments[0].GetInterfaces().Any(x => x.IsAssignableTo(messageType)) && arguments[0].BaseType != messageType)
                         continue;
 
                     if (!handlerDictionary.ContainsKey(arguments[0]))

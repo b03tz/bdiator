@@ -21,6 +21,8 @@ namespace Bediator.Tests.Services
                     return new ExceptionEventHandler();
                 case nameof(TestFaultyHandler):
                     return new TestFaultyHandler();
+                case nameof(ConcreteTestEventHandler):
+                    return new ConcreteTestEventHandler();
             }
             
             throw new ApplicationException($"Handler for type {handlerType} not implemented!");
