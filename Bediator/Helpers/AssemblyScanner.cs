@@ -8,7 +8,7 @@ namespace Bediator.Helpers
 {
     public class AssemblyScanner
     {
-        public Dictionary<Type, List<Type>> GetHandlers<THandlerType, TMessageType>(Assembly[]? assemblies = null)
+        public Dictionary<Type, List<Type>> GetHandlers<THandlerType, TMessageType>(Assembly[] assemblies = null)
         {
             var handlerDictionary = new Dictionary<Type, List<Type>>();
             var messageType = typeof(TMessageType);
@@ -40,6 +40,9 @@ namespace Bediator.Helpers
             var handlerDictionary = new Dictionary<Type, List<Type>>();
             var handlerInterfaceName = handlerType.Name;
 
+            if (messageType == null)
+                throw new Exception("Message type cannot be null");
+
             foreach (Type type in types)
             {
                 if (type.IsInterface)
@@ -64,7 +67,7 @@ namespace Bediator.Helpers
                     if (!arguments.Any())
                         continue;
 
-                    if (!arguments[0].GetInterfaces().Any(x => x.IsAssignableTo(messageType)) && arguments[0].BaseType != messageType)
+                    if (!arguments[0].GetInterfaces().Any(messageType.IsAssignableFrom) && arguments[0].BaseType != messageType)
                         continue;
 
                     if (!handlerDictionary.ContainsKey(arguments[0]))

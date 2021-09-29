@@ -4,6 +4,6 @@ namespace Bediator
 {
     public interface IHandlerProvider
     {
-        public object GetService(Type handlerType);
+        object GetService(Type handlerType);
     }
 }

@@ -10,7 +10,7 @@ namespace Bediator
         private readonly List<IBDiatorInstance> bDiatorInstances = new List<IBDiatorInstance>();
         private readonly BDiatorOptions options = new BDiatorOptions();
         
-        public BDiator(IHandlerProvider handlerProvider, BDiatorOptions? bdiatorOptions = null)
+        public BDiator(IHandlerProvider handlerProvider, BDiatorOptions bdiatorOptions = null)
         {
             this.options = bdiatorOptions ?? this.options;
             this.handlerProvider = handlerProvider;
