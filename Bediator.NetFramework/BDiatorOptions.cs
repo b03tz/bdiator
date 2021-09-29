@@ -4,6 +4,6 @@ namespace Bediator
 {
     public class BDiatorOptions
     {
-        public Assembly[] HandlerAssemblies { get; init; } = new Assembly[] {};
+        public Assembly[] HandlerAssemblies { get; set; } = new Assembly[] {};
     }
 }

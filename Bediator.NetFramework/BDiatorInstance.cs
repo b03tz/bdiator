@@ -20,10 +20,7 @@ namespace Bediator
 
         public async Task<bool> HandleAsync<TMessageType1>(TMessageType1 message)
         {
-            if (message == null)
-                return false;
-            
-            if (!this.handlersByMessageTypes.ContainsKey(message.GetType()))
+            if (message == null || !this.handlersByMessageTypes.ContainsKey(message.GetType()))
                 return false;
 
             await RaiseHandlersAsync(this.handlersByMessageTypes[message.GetType()], message);

@@ -20,7 +20,7 @@ namespace Bediator.Tests
                 await Assert.ThrowsAsync<ExceptionHandlerException>(async () =>
                     await bdiator.HandleAsync(new ExceptionEvent()));
 
-            Assert.Equal(exception.Message, "Handler has thrown exception!");
+            Assert.Equal("Handler has thrown exception!", exception.Message);
         }
 
         [Fact]

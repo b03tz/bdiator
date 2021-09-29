@@ -1,7 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
     <PropertyGroup>
-        <TargetFramework>net50</TargetFramework>
+        <TargetFramework>net48</TargetFramework>
         <Nullable>enable</Nullable>
         <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
         <Description>A very simple mediator pattern implementation, pronounced as Mediator but with the letter B =)</Description>
@@ -12,11 +11,11 @@
         <Company>CodeMaster</Company>
         <Authors>b03tz</Authors>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <Version>1.0.4</Version>
+        <Version>1.0.0</Version>
+        <LangVersion>8</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
         <None Include="..\README.md" Pack="true" PackagePath="\" />
     </ItemGroup>
-
 </Project>
