@@ -50,7 +50,7 @@ namespace Bediator
                         throw new ApplicationException($"Handler {messageHandler} should have a 'Handle' or 'HandleAsync' method!");
                 }
 
-                var result = method.Invoke(messageHandler, new object[] { message! });
+                var result = method.Invoke(messageHandler, new object[] { message });
 
                 if (!isAsync)
                     continue;
