@@ -8,7 +8,7 @@ namespace Bediator.Helpers
 {
     public class AssemblyScanner
     {
-        public Dictionary<Type, List<Type>> GetHandlers<THandlerType, TMessageType>(Assembly[]? assemblies = null)
+        public Dictionary<Type, List<Type>> GetHandlers<THandlerType, TMessageType>(Assembly[] assemblies = null)
         {
             var handlerDictionary = new Dictionary<Type, List<Type>>();
             var messageType = typeof(TMessageType);

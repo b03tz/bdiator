@@ -1,8 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net50</TargetFramework>
-        <Nullable>enable</Nullable>
+        <TargetFramework>netstandard2.0</TargetFramework>
         <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
         <Description>A very simple mediator pattern implementation, pronounced as Mediator but with the letter B =)</Description>
         <PackageProjectUrl>https://github.com/b03tz/bdiator</PackageProjectUrl>
