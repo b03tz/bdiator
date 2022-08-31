@@ -34,6 +34,19 @@ namespace Bediator.Tests
                     await bdiator.HandleAsync(new UnregisteredEvent()));
             Assert.Equal($"Handler for type {typeof(UnregisteredEventHandler)} not implemented!", exception.Message);
         }
+        
+        [Fact]
+        public async void NoHandlerRegisteredShouldNotThrowException()
+        {
+            var bdiator = new BDiator(new NullHandlerProvider(), new BDiatorOptions
+            {
+                HandlerNotFoundAction = HandlerNotFoundAction.Ignore
+            });
+            
+            bdiator.Subscribe<IEventHandler<IEvent>, IEvent>();
+
+            await bdiator.HandleAsync(new UnregisteredEvent());
+        }
 
         [Fact]
         public async void WrongHandlerRegisteredException()

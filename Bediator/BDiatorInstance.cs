@@ -35,6 +35,9 @@ namespace Bediator
 
         private async Task RaiseHandlersAsync<TMessageType1>(IEnumerable<Type> handlers, TMessageType1 message)
         {
+            if (message == null)
+                return;
+            
             foreach (var handlerType in handlers)
             {
                 var messageHandler = this.handlerProvider.GetService(handlerType);

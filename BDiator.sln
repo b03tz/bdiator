@@ -1,5 +1,4 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bediator", "Bediator\Bediator.csproj", "{A5F3194B-7F1F-42EF-801B-744BE2CF3BF8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bediator.Tests", "Bediator.Tests\Bediator.Tests.csproj", "{8545BC9D-4185-4B92-A068-08624E492E50}"
