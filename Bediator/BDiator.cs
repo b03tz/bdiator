@@ -9,7 +9,7 @@ namespace Bediator
         private readonly IHandlerProvider handlerProvider;
         private readonly List<IBDiatorInstance> bDiatorInstances = new List<IBDiatorInstance>();
         private readonly BDiatorOptions options = new BDiatorOptions();
-        
+
         public BDiator(IHandlerProvider handlerProvider, BDiatorOptions? bdiatorOptions = null)
         {
             this.options = bdiatorOptions ?? this.options;
@@ -18,7 +18,8 @@ namespace Bediator
 
         public void Subscribe<THandlerType, TMessageType>()
         {
-            this.bDiatorInstances.Add(new BDiatorInstance<THandlerType, TMessageType>(this.handlerProvider, this.options));
+            this.bDiatorInstances.Add(
+                new BDiatorInstance<THandlerType, TMessageType>(this.handlerProvider, this.options));
         }
 
         public async Task HandleAsync<TMessageType>(TMessageType message)
@@ -35,10 +36,8 @@ namespace Bediator
                     break;
             }
 
-            if (!bdiatorFound)
-            {
+            if (!bdiatorFound && this.options.HandlerNotFoundAction == HandlerNotFoundAction.ThrowException)
                 throw new ApplicationException($"There was no handler registered for message type {message.GetType()}");
-            }
         }
     }
 }

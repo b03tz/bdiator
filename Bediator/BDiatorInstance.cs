@@ -9,12 +9,14 @@ namespace Bediator
     public class BDiatorInstance<THandlerType, TMessageType> : IBDiatorInstance
     {
         private readonly IHandlerProvider handlerProvider;
+        private readonly BDiatorOptions bDiatorOptions;
         private readonly AssemblyScanner assemblyScanner = new AssemblyScanner();
         private readonly Dictionary<Type, List<Type>> handlersByMessageTypes;
 
         public BDiatorInstance(IHandlerProvider handlerProvider, BDiatorOptions bDiatorOptions)
         {
             this.handlerProvider = handlerProvider;
+            this.bDiatorOptions = bDiatorOptions;
             this.handlersByMessageTypes = this.assemblyScanner.GetHandlers<THandlerType, TMessageType>(bDiatorOptions.HandlerAssemblies);
         }
 
@@ -35,8 +37,16 @@ namespace Bediator
         {
             foreach (var handlerType in handlers)
             {
-                var messageHandler = this.handlerProvider.GetService(handlerType) ??
-                                     throw new ApplicationException($"No messagehandler registered for {handlerType}");
+                var messageHandler = this.handlerProvider.GetService(handlerType);
+
+                if (messageHandler == null)
+                {
+                    if (this.bDiatorOptions.HandlerNotFoundAction == HandlerNotFoundAction.ThrowException)
+                        throw new ApplicationException($"No messagehandler registered for {handlerType}");
+
+                    continue;
+                }
+                
 
                 var isAsync = true;
                 var method = messageHandler.GetType().GetMethod("HandleAsync");
